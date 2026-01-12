@@ -7,7 +7,7 @@ export const model = new OpenRouter({
 
 export async function generateContent(message) {
   const stream = await model.chat.send({
-    model: "xiaomi/mimo-v2-flash:free",
+    model: process.env.AI_MODEL,
     messages: [{ role: "user", content: message }],
     stream: false,
   });
