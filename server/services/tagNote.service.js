@@ -2,7 +2,7 @@ import { generateContent } from "../openrouter.js";
 import { tagNotePrompt } from "../prompts/tagNote.prompt.js";
 import { safeJsonParse } from "../utils/safeJsonParse.js";
 import { validateSchema } from "../utils/validateSchema.js";
-import { tagNoteSchema } from "../schemas/tagNote.schema.js";
+import { tagNoteResponseSchema } from "../schemas/tagNote.schema.js";
 import AppError from "../utils/AppError.js";
 
 const MAX_TAGS = 5;
@@ -26,7 +26,7 @@ export async function tagNote(note) {
     throw new AppError("AI response is invalid JSON", 502);
   }
 
-  validateSchema(tagNoteSchema, parsed);
+  validateSchema(tagNoteResponseSchema, parsed);
 
   if (!parsed.tags || !Array.isArray(parsed.tags)) {
     throw new AppError("AI response format invalid", 502);
