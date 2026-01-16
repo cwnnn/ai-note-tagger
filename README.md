@@ -46,15 +46,13 @@ You can watch the demo video here:
 [![youtube](https://img.youtube.com/vi/feNPKVRTXLY/0.jpg)](https://www.youtube.com/watch?v=feNPKVRTXLY)
 
 
-*(Replace `YOUR_VIDEO_LINK` with your real video link)*
-
 ---
 
 ## 🚀 Installation (Local)
 
 ```bash
 # clone the repository
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/cwnnn/ai-note.git
 
 ```
 ### Environment Variables
