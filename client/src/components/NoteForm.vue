@@ -6,11 +6,19 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  date: {
+    type: String,
+    default: "",
+  },
   content: {
     type: String,
     default: "",
   },
   loading: Boolean,
+  readonly: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(["update:title", "update:content", "submit"]);
@@ -38,19 +46,24 @@ function submit() {
 
 <template>
   <div class="note-form-wrapper">
-    <div class="note-card">
-      <input
-        v-model="titleModel"
-        type="text"
-        placeholder="Başlığı gir…"
-        class="note-input"
-      />
-
+    <div class="note-card relative">
+      <p class="absolute font-serif text-sm top-2 left-9">{{ props.date }}</p>
+      <div class="flex justify-between">
+        <input
+          v-model="titleModel"
+          type="text"
+          placeholder="Title..."
+          class="note-input"
+          :disabled="readonly"
+        />
+        <slot name="header"></slot>
+      </div>
       <textarea
         v-model="contentModel"
         rows="6"
-        placeholder="Notunu yaz…"
+        placeholder="Your Note…"
         class="note-textarea"
+        :disabled="readonly"
       ></textarea>
 
       <div class="flex gap-2 items-center">
@@ -79,7 +92,7 @@ function submit() {
 }
 
 .note-input:disabled {
-  @apply bg-gray-600 text-gray-400 cursor-not-allowed;
+  @apply text-gray-400 cursor-not-allowed;
 }
 
 /* TEXTAREA İçerik */
@@ -92,7 +105,7 @@ function submit() {
 }
 
 .note-textarea:disabled {
-  @apply bg-gray-600 text-gray-400 cursor-not-allowed border-gray-500;
+  @apply text-gray-400 cursor-not-allowed border-gray-500;
 }
 
 /* SLOT: etiketler veya ekstra içerik için boş bırakıldı */
