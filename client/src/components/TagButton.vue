@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-const props = defineProps({
-  label: {
-    type: String,
-    required: true,
-  },
-  removable: {
-    type: Boolean,
-    default: false,
-  },
-});
+const props = defineProps<{
+  label?: string;
+  removable?: boolean;
+}>();
 
 const emit = defineEmits(["click", "remove"]);
 </script>
